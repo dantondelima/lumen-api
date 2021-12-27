@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artista;
+use App\Services\ArtistaService;
 use Illuminate\Http\Request;
 
 
-class ArtistasController extends Controller
+class ArtistaController extends Controller
 {
+
+    protected $service;
+
+    public function __construct(ArtistaService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index(Request $request)
     {
-        return response()->json(Artista::all(), 200);
+        return response()->json($this->service->all(), 200);
     }
 
     public function show($id)
@@ -25,6 +34,16 @@ class ArtistasController extends Controller
     }
 
     public function store(Request $request){
+        return response()->json(Artista::create($request->all()), 201);
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function destroy()
+    {
 
     }
 }

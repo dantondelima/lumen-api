@@ -20,13 +20,13 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router){
-    $router->get('artistas', 'ArtistasController@index');
-    $router->get('artistas/{id}', 'ArtistasController@show');
-    $router->post('artistas', 'ArtistasController@store');
-    $router->put('artistas/{id}', 'ArtistasController@update');
-    $router->delete('artistas/{id}', 'ArtistasController@destroy');
+    $router->get('artistas', 'ArtistaController@index');
+    $router->get('artistas/{id}', 'ArtistaController@show');
+    $router->post('artistas', 'ArtistaController@store');
+    $router->put('artistas/{id}', 'ArtistaController@update');
+    $router->delete('artistas/{id}', 'ArtistaController@destroy');
 
-    $router->get('musicas', 'MusicasController@index');
+    $router->get('musicas', 'MusicaController@index');
 });
 
 
