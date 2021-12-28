@@ -25,7 +25,7 @@ abstract class AbstractRepository
      */
     public function find(int $id)
     {
-        return $this->model->find($id);
+        return $this->model::find($id)->toArray();
     }
 
     /**
@@ -36,7 +36,7 @@ abstract class AbstractRepository
      */
     public function findOrFail(int $id)
     {
-        return $this->model->findOrFail($id);
+        return $this->model::findOrFail($id)->toArray();
     }
 
     /**
@@ -46,7 +46,7 @@ abstract class AbstractRepository
      */
     public function first()
     {
-        return $this->model->first();
+        return $this->model::first()->toArray();
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class AbstractRepository
      */
     public function all()
     {
-        return $this->model->all();
+        return $this->model::all()->toArray();
     }
 
     /**
@@ -66,7 +66,7 @@ abstract class AbstractRepository
      */
     public function paginate($limit = 10)
     {
-        return $this->model->paginate($limit);
+        return $this->model::paginate($limit);
     }
 
     /**
@@ -77,7 +77,7 @@ abstract class AbstractRepository
      */
     public function create(array $data)
     {
-        return $this->model->create($data);
+        return $this->model::create($data)->toArray();
     }
 
     /**
@@ -89,7 +89,7 @@ abstract class AbstractRepository
      */
     public function update(int $id, array $data)
     {
-        return $this->findOrFail($id)->update($data);
+        return $this->model::findOrFail($id)->update($data);
     }
 
     /**
@@ -100,7 +100,7 @@ abstract class AbstractRepository
      */
     public function delete(int $id)
     {
-        return $this->findOrFail($id)->delete();
+        return $this->model::findOrFail($id)->delete();
     }
 
     /**
@@ -111,6 +111,6 @@ abstract class AbstractRepository
      */
     public function forceDelete(int $id)
     {
-        return $this->findOrFail($id)->forceDelete();
+        return $this->model::findOrFail($id)->forceDelete();
     }
 }
