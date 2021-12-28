@@ -11,4 +11,15 @@ class Musica extends Model
     public function artista(){
         return $this->belongsTo(Artista::class);
     }
+
+    public function getEscutadaAttribute($escutada)
+    {
+        return $escutada;
+    }
+
+    public function setNomeAttribute(string $nome): void
+    {
+        $this->attributes['nome'] = mb_convert_case($nome, MB_CASE_TITLE);
+    }
+
 }

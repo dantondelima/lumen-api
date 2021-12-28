@@ -77,4 +77,17 @@ class ResponseUtil
             'error_description' => 'Data not found'
         ];
     }
+
+    /**
+     * @param int $statusCode
+     * @return array
+     */
+    public static function notAuthorizedResponse(int $statusCode = Response::HTTP_UNAUTHORIZED): array
+    {
+        return [
+            'status_code' => $statusCode,
+            'error' => true,
+            'error_description' => 'Unauthorized'
+        ];
+    }
 }

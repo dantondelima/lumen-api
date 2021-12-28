@@ -19,15 +19,19 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api'], function () use ($router){
-    $router->get('artistas', 'ArtistaController@index');
-    $router->get('artistas/{id}', 'ArtistaController@show');
-    $router->post('artistas', 'ArtistaController@store');
-    $router->put('artistas/{id}', 'ArtistaController@update');
-    $router->delete('artistas/{id}', 'ArtistaController@destroy');
+$router->group(['prefix' => 'api', 'middleware' => 'autenticador'], function () use ($router){
+    $router->group(['prefix' => 'artistas'], function () use ($router){
+        $router->get('', 'ArtistaController@index');
+        $router->get('{id}', 'ArtistaController@show');
+        $router->post('', 'ArtistaController@store');
+        $router->put('{id}', 'ArtistaController@update');
+        $router->delete('{id}', 'ArtistaController@destroy');
+    });
 
     $router->get('musicas', 'MusicaController@index');
 });
+
+$router->post('api/login', 'TokenController@gerarToken');
 
 
 

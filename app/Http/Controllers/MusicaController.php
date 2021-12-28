@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\MusicaService;
 use Illuminate\Http\Request;
 
-class MusicaController extends Controller
+class MusicaController extends AbstractController
 {
-    public function index(Request $request)
-    {
 
+    /**
+     * @param MusicaService $service
+     */
+    public function __construct(MusicaService $service)
+    {
+        $this->service = $service;
     }
 }
