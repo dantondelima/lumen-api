@@ -104,6 +104,7 @@ $app->routeMiddleware([
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\ArtistaServiceProvider::class);
 $app->register(App\Providers\MusicaServiceProvider::class);
+$app->register(App\Providers\UserServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

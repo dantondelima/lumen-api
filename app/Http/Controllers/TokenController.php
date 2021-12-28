@@ -3,29 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\UserService;
 use App\Utils\ResponseUtil;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class TokenController extends Controller
+class TokenController extends AbstractController
 {
+    public function __construct(UserService $service)
+    {
+        $this->service = $service;
+    }
+
     public function gerarToken(Request $request)
     {
-        //$this->validate();
-        $user = User::where('email', $request->email)->first();
-
-        if(is_null($user) || !Hash::check($request->password, $user->password)){
-            return ResponseUtil::notAuthorizedResponse();
+        try{
+            $result = $this->service->gerarToken($request->all());
+            $response = ResponseUtil::successResponse($result);
+        }catch (\Exception $ex){
+            dd($ex);
+            $response = ResponseUtil::errorResponse($ex);
         }
-
-        $token = JWT::encode(
-            ['email' => $request->email],
-            env('JWT_key')
-        );
-
-        return [
-            'access_token' => $token
-        ];
+        return response()->json($response, $response['status_code']);
     }
 }
