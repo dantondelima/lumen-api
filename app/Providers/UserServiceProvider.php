@@ -11,6 +11,10 @@ class UserServiceProvider extends ServiceProvider
 {
     public function register()
     {
+
+    }
+
+    public function boot(){
         $this->app->bind(UserService::class, function ($app) {
             return new UserService(new UserRepository(new User()));
         });

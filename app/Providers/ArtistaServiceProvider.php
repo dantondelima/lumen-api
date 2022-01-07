@@ -11,6 +11,10 @@ class ArtistaServiceProvider extends ServiceProvider
 {
     public function register()
     {
+
+    }
+
+    public function boot(){
         $this->app->bind(ArtistaService::class, function ($app) {
             return new ArtistaService(new ArtistaRepository(new Artista()));
         });

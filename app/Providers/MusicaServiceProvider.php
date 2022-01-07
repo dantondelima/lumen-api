@@ -14,6 +14,10 @@ class MusicaServiceProvider extends ServiceProvider
 {
     public function register()
     {
+
+    }
+
+    public function boot(){
         $this->app->bind(MusicaService::class, function ($app) {
             return new MusicaService(new MusicaRepository(new Musica()));
         });
